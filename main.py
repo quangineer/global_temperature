@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 import matplotlib
-import numpy as np 
+
 
 city_temperature = "city_data_temperature.csv"
 global_temperature = "global_data_temperature.csv"
