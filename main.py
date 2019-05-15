@@ -37,7 +37,7 @@ Year_to_Global_temperature = (list(data2.year))[6:]
 fig, axs = plt.subplots()
 plt.plot(Year_to_Global_temperature, B)
 plt.plot(Year_to_Seattle_temperature, A)
-fig.suptitle("Temperature Comparison between Seattle and the World over hundred years", fontsize=14)
+fig.suptitle("Temperature Comparison between Seattle and the World over hundred years", fontsize=10)
 axs.set_xlabel('time (year)')
 axs.set_ylabel('temperature (Celsius)')
 plt.legend(["Global", "Seattle"], loc='upper left')
