@@ -6,20 +6,12 @@ import numpy as np
 city_temperature = "city_data_temperature.csv"
 global_temperature = "global_data_temperature.csv"
 
-#Name city_temperature (city level) data as data1 to read:
+
 data1 = pd.read_csv(city_temperature)
-#Name global_temperature (global level) data as data2 to read:
+
 data2 = pd.read_csv(global_temperature)
 
-# Seattle_temperature = list((data1[data1.city == 'Seattle'].avg_temp).fillna(0))
-# print (Seattle_temperature)
-
-Seattle_temperature = list(data1[data1.city == 'Seattle'].avg_temp)
-for i in range(len(Seattle_temperature)):
-    if str(Seattle_temperature[i]) == 'nan':
-        Seattle_temperature[i] = 0
-
-# print (Seattle_temperatu re)
+Seattle_temperature = list((data1[data1.city == 'Seattle'].avg_temp).fillna(0))
 
 def running_mean(Seattle_temperature, N):
     sum = 0
@@ -33,19 +25,15 @@ def running_mean(Seattle_temperature, N):
         result[i] = sum/N
     return result 
 
-# print(running_mean(Seattle_temperature, 7))
-A = running_mean(Seattle_temperature,7)
 
-moving_average = A[6:]
-# print (moving_average)
-
+A = (running_mean(Seattle_temperature,7))[6:]
 Year_to_Seattle_temperature = (list(data1[data1.city == 'Seattle'].year))[6:]
-# print (Year_to_Seattle_temperature)
 
-fig, ax = plt.subplots()
-ax.plot(Year_to_Seattle_temperature, moving_average)
+Global_temperature = list(data2.avg_temp)
+B = (running_mean(Global_temperature,7))[6:]
+Year_to_Global_temperature = (list(data2.year))[6:]
 
-ax.set(xlabel='time (year)', ylabel='temperature (C)', title='Average Temperature in Seattle')
-ax.grid()
-fig.savefig("test.png")
+plt.plot(Year_to_Global_temperature, B)
+plt.plot(Year_to_Seattle_temperature, A)
+plt.legend(["Global", "Seattle"], loc='upper left')
 plt.show()
