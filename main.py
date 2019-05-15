@@ -37,4 +37,15 @@ def running_mean(Seattle_temperature, N):
 A = running_mean(Seattle_temperature,7)
 
 moving_average = A[6:]
-print (moving_average)
+# print (moving_average)
+
+Year_to_Seattle_temperature = (list(data1[data1.city == 'Seattle'].year))[6:]
+# print (Year_to_Seattle_temperature)
+
+fig, ax = plt.subplots()
+ax.plot(Year_to_Seattle_temperature, moving_average)
+
+ax.set(xlabel='time (year)', ylabel='temperature (C)', title='Average Temperature in Seattle')
+ax.grid()
+fig.savefig("test.png")
+plt.show()
